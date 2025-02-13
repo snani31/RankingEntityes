@@ -14,7 +14,7 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
     {
         public RankingCategory() { }
 
-        public int ID;
+        public Guid ID;
         public string Description;
         public string Tytle;
         public string RankingDirrectoryPath;
@@ -46,7 +46,7 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
         /// <param name="tytle"></param>
         /// <param name="rankingDirrectoryPath"></param>
         /// <param name="rankingIconPath"></param>
-        public void Deconstruct(out int id, out string description,out string tytle,out string rankingDirrectoryPath,
+        public void Deconstruct(out Guid id, out string description,out string tytle,out string rankingDirrectoryPath,
             out string rankingIconPath)
         {
             id = ID;
