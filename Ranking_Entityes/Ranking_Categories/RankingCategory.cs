@@ -21,9 +21,15 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
         public string RankingIconPath;
         public bool Deserialize(IDeserializer deserializer, string path)
         {
-            ///// Необходимо добавить обработку исключений !!!!!
-            (ID,Description,Tytle,RankingDirrectoryPath,RankingIconPath) = (RankingCategory)deserializer.DeserializeScalar<RankingCategory>(path);
-            return true;
+            if ( deserializer.DeserializeScalar<RankingCategory>(path) is RankingCategory category)
+            {
+                (ID, Description, Tytle, RankingDirrectoryPath, RankingIconPath) = category;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Serialize(ISerializer serializer, string path)
