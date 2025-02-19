@@ -1,4 +1,6 @@
-﻿using RankingEntityes.IO_Entities.Interfaces;
+﻿using RankingEntityes.IO_Entities.Classes;
+using RankingEntityes.IO_Entities.Interfaces;
+using RankingEntityes.Ranking_Entityes.Ranking_Categories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +18,41 @@ namespace RankingEntityes.Ranking_Entityes.MediaObjacts
         public MediaObject()
         {
             Paths = new List<string>();
-            Paths.Add(@"\AppResources\PowerOffButtonIcon.png");
         }
         public bool Deserialize(IDeserializer deserializer, string path)
         {
-            throw new NotImplementedException();
+            if (deserializer.DeserializeScalar<MediaObject>(path) is MediaObject mediaObject)
+            {
+                (ID, Description, Tytle, Paths) = mediaObject;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public bool Serialize(ISerializer Serializer, string path)
+        public bool Serialize(ISerializer serializer, string path)
         {
-            throw new NotImplementedException();
+            try
+            {
+                serializer.SerializeScalar(this, path);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
+
+        public void Deconstruct(out Guid id, out string description, out string tytle,out List<string> paths)
+        {
+            id = ID;
+            description = Description;
+            tytle = Tytle;
+            paths = Paths;
+        }
+
     }
 }
+ 
