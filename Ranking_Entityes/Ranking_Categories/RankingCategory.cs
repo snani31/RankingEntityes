@@ -32,11 +32,11 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
             }
         }
 
-        public bool Serialize(ISerializer serializer, string path)
+        public bool Serialize(ISerializer serializer, string path, FileMode mode)
         {
             try
             {
-                serializer.SerializeScalar(this, path);
+                serializer.SerializeScalar(this, path, mode);
             }
             catch (Exception e)
             {

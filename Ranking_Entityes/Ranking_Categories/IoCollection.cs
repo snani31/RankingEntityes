@@ -23,6 +23,8 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
                 _valueArray = value;
             }
         }
+
+        public int Lenght { get => ValueArray.Length; }
         /// <summary>
         /// Конструктор, который использует десереалейзер для десериализации коллекции из файла.
         /// </summary>
@@ -30,8 +32,18 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
         {
             ValueArray = new T[0];
         }
+        public IoCollection(IEnumerable<T> collectionParameter)
+        {
+            ValueArray = collectionParameter.ToArray();
+        }
         public T this[int index]
         {
+            set 
+            {
+                if(value is null) throw new ArgumentNullException("value");
+                else if (index < 0 || index > this.Lenght) throw new IndexOutOfRangeException("index");
+                ValueArray[index] = value;
+            }
             get
             {
                 return ValueArray[index];
@@ -73,9 +85,9 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
             return true;
         }
 
-        public bool Serialize(ISerializer serializer, string path)
+        public bool Serialize(ISerializer serializer, string path, FileMode mode)
         {
-            serializer.SerializeList(this,path); // Добавить обработку исключений
+            serializer.SerializeList(this,path, mode); // Добавить обработку исключений
             return true;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using RankingEntityes.IO_Entities.Classes;
+using RankingEntityes.IO_Entities.Enums;
 using RankingEntityes.IO_Entities.Interfaces;
 using RankingEntityes.Ranking_Entityes.Ranking_Categories;
 using System;
@@ -32,11 +33,11 @@ namespace RankingEntityes.Ranking_Entityes.MediaObjacts
             }
         }
 
-        public bool Serialize(ISerializer serializer, string path)
+        public bool Serialize(ISerializer serializer, string path, FileMode mode)
         {
             try
             {
-                serializer.SerializeScalar(this, path);
+                serializer.SerializeScalar(this, path,mode);
             }
             catch (Exception e)
             {
