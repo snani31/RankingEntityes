@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RankingEntityes.IO_Entities.Enums;
 using RankingEntityes.IO_Entities.Interfaces;
 using RankingEntityes.Ranking_Entityes.Ranking_Categories;
 using System;
@@ -21,7 +20,7 @@ namespace RankingEntityes.IO_Entities.Classes
                 if (sender.ValueArray.Length < 1)
                 {
                     // открыть файл по указанному пути с параметром Trunkate и сразу закрыть его, чтобы стереть содержимое
-                    using (FileStream fStream = new FileStream(path, FileMode.Truncate, FileAccess.Write)) ;
+                    using (FileStream fStream = new FileStream(path, FileMode.Truncate, FileAccess.Write));
                 }
                 else
                 {

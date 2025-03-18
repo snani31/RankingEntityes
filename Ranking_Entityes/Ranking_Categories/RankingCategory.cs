@@ -1,29 +1,20 @@
 ﻿using RankingEntityes.IO_Entities.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Xml.Linq;
 
 namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
 {
-    public class RankingCategory: IO_Entities.Interfaces.ISerializable,IDeserializable
+    public class RankingCategory: IoEntity
     {
         public RankingCategory() { }
 
-        public Guid ID;
         public string Description;
         public string Tytle;
         public string RankingDirrectoryPath;
         public string RankingIconPath;
-        public bool Deserialize(IDeserializer deserializer, string path)
+        public override bool Deserialize(IDeserializer deserializer, string path)
         {
             if ( deserializer.DeserializeScalar<RankingCategory>(path) is RankingCategory category)
             {
-                (ID, Description, Tytle, RankingDirrectoryPath, RankingIconPath) = category;
+                (base.ID, Description, Tytle, RankingDirrectoryPath, RankingIconPath) = category;
                 return true;
             }
             else
@@ -32,7 +23,7 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
             }
         }
 
-        public bool Serialize(ISerializer serializer, string path, FileMode mode)
+        public override bool Serialize(ISerializer serializer, string path, FileMode mode)
         {
             try
             {
@@ -55,7 +46,7 @@ namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
         public void Deconstruct(out Guid id, out string description,out string tytle,out string rankingDirrectoryPath,
             out string rankingIconPath)
         {
-            id = ID;
+            id = base.ID;
             description = Description;
             tytle = Tytle;
             rankingDirrectoryPath = RankingDirrectoryPath;

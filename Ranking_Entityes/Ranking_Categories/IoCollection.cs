@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace RankingEntityes.Ranking_Entityes.Ranking_Categories
 {
     public class IoCollection<T> : IDeserializable, ISerializable, IEnumerable<T>
-        where T : ISerializable, IDeserializable
+        where T : IoEntity
     {
         private T[] _valueArray = Array.Empty<T>();
         public T[] ValueArray

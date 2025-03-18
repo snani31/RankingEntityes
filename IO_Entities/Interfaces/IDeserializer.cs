@@ -1,4 +1,5 @@
-﻿using RankingEntityes.Ranking_Entityes.Ranking_Categories;
+﻿using RankingEntityes.Ranking_Entityes;
+using RankingEntityes.Ranking_Entityes.Ranking_Categories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace RankingEntityes.IO_Entities.Interfaces
 {
     public interface IDeserializer
     {
-        internal IoCollection<T> DeserializeList<T>(string path) where T : IDeserializable,ISerializable;
-        internal IDeserializable DeserializeScalar<T>(string path) where T : IDeserializable;
+        internal IoCollection<T> DeserializeList<T>(string path) where T : IoEntity;
+        internal IDeserializable DeserializeScalar<T>(string path) where T : IoEntity;
     }
 }
