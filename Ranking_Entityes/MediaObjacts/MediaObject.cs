@@ -1,4 +1,5 @@
-﻿using RankingEntityes.IO_Entities.Classes;
+﻿using RankingEntityes.Filters;
+using RankingEntityes.IO_Entities.Classes;
 using RankingEntityes.IO_Entities.Interfaces;
 using RankingEntityes.Ranking_Entityes.Ranking_Categories;
 using System;
@@ -9,14 +10,17 @@ using System.Threading.Tasks;
 
 namespace RankingEntityes.Ranking_Entityes.MediaObjacts
 {
-    public class MediaObject : IoEntity
+    public class MediaObject : IoEntity, IFilterable
     {
         public string Description {  get; set; } = String.Empty;
         public string Tytle { get; set; } = String.Empty;
         public List<string> Paths { get; set; }
+        public IEnumerable<Filter> MatchFilters { get; set; }
+
         public MediaObject()
         {
             Paths = new List<string>();
+            MatchFilters = new List<Filter>();
         }
         public override bool Deserialize(IDeserializer deserializer, string path)
         {
@@ -44,7 +48,7 @@ namespace RankingEntityes.Ranking_Entityes.MediaObjacts
             return true;
         }
 
-        public void Deconstruct(out Guid id, out string description, out string tytle,out List<string> paths)
+        private void Deconstruct(out Guid id, out string description, out string tytle,out List<string> paths)
         {
             id = base.ID;
             description = Description;
