@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Linq;
+using System.Windows;
 
 
 
@@ -17,25 +18,44 @@ namespace RankingEntityes.IO_Entities.Classes
 {
     public class JsonDeserializer : Deserializer
     {
+        private Newtonsoft.Json.JsonSerializer Serializer {  get; init; }
+
+
+        public JsonDeserializer()
+        {
+            Serializer = new Newtonsoft.Json.JsonSerializer();
+        }
+
+        public JsonDeserializer(JsonConverter converter): this()
+        {
+            Serializer.Converters.Add(converter);
+        }
+
         public override IoCollection<T> DeserializeList<T>(string path)
         {
             if (File.Exists(path))
             {
-                Newtonsoft.Json.JsonSerializer serializer = new Newtonsoft.Json.JsonSerializer();
-                JsonTextReader reader = new JsonTextReader(new StreamReader(path));
                 IoCollection<T> localList = new IoCollection<T>();
-                reader.SupportMultipleContent = true;
-                while (reader.Read())
+
+                using (StreamReader streamReader = new StreamReader(path))
                 {
-                    T timeStrTmp = serializer.Deserialize<T>(reader);
-                    localList.Add(timeStrTmp);
+                    using (JsonTextReader jsonReader = new JsonTextReader(streamReader))
+                    {
+                        jsonReader.SupportMultipleContent = true;
+                        while (jsonReader.Read())
+                        {
+                            T timeStrTmp = Serializer.Deserialize<T>(jsonReader);
+                            localList.Add(timeStrTmp);
+                        }
+                        jsonReader.Close();
+                    }
                 }
-                reader.Close();
                 return localList;
             }
             else
             {
                 return null;
+
             }
         }
 
