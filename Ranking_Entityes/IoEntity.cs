@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RankingEntityes.Ranking_Entityes
 {
-    public abstract class IoEntity : ISerializable, IDeserializable
+    public abstract class IoEntity : ISerializable, IDeserializable, IIdentifiable
     {
         public Guid ID { get; set; }
 
