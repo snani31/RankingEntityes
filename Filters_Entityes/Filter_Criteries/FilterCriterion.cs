@@ -11,6 +11,9 @@ namespace RankingEntityes.Filters
 {
     public abstract class FilterCriterion : IoEntity, IFilterCriterion, ITypeTytleContains
     {
+        public string Tytle { get; set; }
+        public string Description { get; set; }
+
         public string TypeName
         {
             get

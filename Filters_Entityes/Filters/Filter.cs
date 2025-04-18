@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RankingEntityes.Filters
 {
-    public abstract class Filter : IIdentifiable, IFilter, ITypeTytleContains
+    public abstract class Filter : IIdentifiable, IFilter, ITypeTytleContains, IClonableDeep<Filter>
     {
         public Guid ID { get; set; }
 
@@ -21,5 +21,12 @@ namespace RankingEntityes.Filters
         }
 
         public abstract bool CompliantToFilter(IFilterable filterableEntity);
+
+        public bool IsMatchByID(IIdentifiable identifiableObj)
+        {
+            return identifiableObj.ID.Equals(this.ID);
+        }
+
+        public abstract Filter DeepClone();
     }
 }

@@ -11,9 +11,6 @@ namespace RankingEntityes.Filters
 {
     public class ConditionFilterCriterion : FilterCriterion
     {
-        public string Tytle {  get; set; }
-        public string Description { get; set; }
-
         public override bool Deserialize(IDeserializer deserializer, string path)
         {
             throw new NotImplementedException();
