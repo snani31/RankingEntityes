@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RankingEntityes.Ranking_Entityes.MediaObjacts
 {
-    public class MediaObject : IoEntity, IFilterable
+    public class MediaObject : IoEntity, IFilterable, IHasSearchedKeyWords
     {
         public string Description {  get; set; } = String.Empty;
         public string Tytle { get; set; } = String.Empty;
@@ -56,6 +56,13 @@ namespace RankingEntityes.Ranking_Entityes.MediaObjacts
             paths = Paths;
         }
 
+        public List<string> GetSearchDataWords()
+        {
+            List<string> words = new List<string>();
+            words.Add(Tytle);
+            words.Add(Description);
+            return words;
+        }
     }
 }
  
