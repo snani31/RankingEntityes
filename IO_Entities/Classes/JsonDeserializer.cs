@@ -1,18 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RankingEntityes.IO_Entities.Interfaces;
 using RankingEntityes.Ranking_Entityes.Ranking_Categories;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Linq;
-using System.Windows;
-
-
 
 namespace RankingEntityes.IO_Entities.Classes
 {

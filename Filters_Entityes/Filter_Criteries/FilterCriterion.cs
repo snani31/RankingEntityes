@@ -1,11 +1,5 @@
-﻿using RankingEntityes.IO_Entities.Interfaces;
-using RankingEntityes.Json.Converters;
+﻿using RankingEntityes.Json.Converters;
 using RankingEntityes.Ranking_Entityes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RankingEntityes.Filters
 {

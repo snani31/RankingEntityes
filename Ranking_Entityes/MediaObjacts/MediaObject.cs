@@ -1,12 +1,5 @@
 ﻿using RankingEntityes.Filters;
-using RankingEntityes.IO_Entities.Classes;
 using RankingEntityes.IO_Entities.Interfaces;
-using RankingEntityes.Ranking_Entityes.Ranking_Categories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RankingEntityes.Ranking_Entityes.MediaObjacts
 {
